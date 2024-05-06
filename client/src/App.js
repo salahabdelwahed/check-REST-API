@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import movieList from "./components/movieList.js";
 import axios from "axios";
 
 const App = () => {
@@ -7,7 +8,7 @@ const App = () => {
     const getDataFromDb = async () => {
       await axios
         .get("http://localhost:5000/movie/user")
-        .then((result) => setmovies(result.data.getDataFromDb))
+        .then((result) => setmovies(result.data.getUser))
         .catch((err) =>
           console.log("this error for get data from database:", err)
         );
@@ -18,10 +19,8 @@ const App = () => {
 
   return (
     <div>
-      {movies.map((film) => (
-        <h1 key={film.id}>{film.title}</h1>
-      ))}
-    </div>
+      <movieList movies={movies}/>
+      </div>
   );
 };
 
